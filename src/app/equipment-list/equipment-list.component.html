@@ -1,0 +1,73 @@
+<main class="container">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-auto">
+                    <h3>Register</h3>
+                </div>
+                <div class="col">
+
+                </div>
+            </div>
+            <ng-container [formGroup]="form">
+                <ng-container formArrayName="equipments">
+                    <ng-container *ngFor="let equipmentForm of equipments.controls; let i = index">
+                        <form [formGroupName]="i" class="mb-3">
+                            <div class="row mt-3">
+                                <div class="col-2">
+                                    <label for="type" class="form-label">Type</label>
+                                    <select id="type" formControlName="type" class="form-select">
+                                        <option value="" disabled default>Select</option>
+                                        <option value="mouse">Mouse</option>
+                                        <option value="keyboard">Keyboard</option>
+                                        <option value="mousepad">Mousepad</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-2">
+                                    <label for="model" class="form-label">Model</label>
+                                    <input formControlName="model" type="text" class="form-control" id="model"
+                                        placeholder="">
+                                </div>
+
+                                <div class="col-2">
+                                    <label for="brand" class="form-label">Brand</label>
+                                    <input formControlName="brand" type="text" class="form-control" id="brand"
+                                        placeholder="">
+                                </div>
+
+                                <div class="col-2">
+                                    <label for="value" class="form-label">Value</label>
+                                    <input formControlName="value" type="text" class="form-control" id="value"
+                                        placeholder="">
+                                </div>
+
+                                <div class="col-2">
+                                    <label for="quantity" class="form-label">Quantity</label>
+                                    <input formControlName="quantity" type="text" class="form-control" id="quantity"
+                                        placeholder="">
+                                </div>
+
+                                <div class="col-2">
+                                    <a (click)="removeLine(i)" class="text-danger">
+                                        <fa-icon [icon]="faX"></fa-icon>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </form>
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+            <div class="col">
+                <button (click)="addLine()" class="btn btn-success">
+                    <fa-icon [icon]="faPlus"></fa-icon>
+                </button>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <pre>{{ equipments.value | json }}</pre>
+        </div>
+    </div>
+</main>
